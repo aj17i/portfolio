@@ -6,19 +6,23 @@
   <title>فهرس بأهم الحوادث المشهورة</title>
   <style>
     :root {
-      --bg: #f6efe3;
-      --paper: rgba(255, 252, 245, 0.92);
-      --ink: #1f1a15;
-      --muted: #756a5e;
-      --gold: #b7893c;
-      --gold-dark: #7d561f;
-      --line: rgba(125, 86, 31, 0.22);
-      --shadow: 0 24px 70px rgba(63, 45, 24, 0.18);
-      --radius: 28px;
+      --ink: #101828;
+      --muted: #667085;
+      --paper: rgba(255, 255, 255, 0.82);
+      --glass: rgba(255, 255, 255, 0.58);
+      --teal: #0f766e;
+      --cyan: #06b6d4;
+      --blue: #2563eb;
+      --violet: #7c3aed;
+      --rose: #e11d48;
+      --amber: #f59e0b;
+      --emerald: #10b981;
+      --line: rgba(15, 118, 110, 0.18);
+      --shadow: 0 26px 80px rgba(16, 24, 40, 0.18);
+      --radius: 30px;
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -27,9 +31,11 @@
       color: var(--ink);
       font-family: "Amiri", "Scheherazade New", "Noto Naskh Arabic", "Traditional Arabic", Tahoma, Arial, sans-serif;
       background:
-        radial-gradient(circle at 18% 12%, rgba(183, 137, 60, 0.22), transparent 28%),
-        radial-gradient(circle at 82% 6%, rgba(125, 86, 31, 0.18), transparent 30%),
-        linear-gradient(135deg, #fbf5ea 0%, var(--bg) 46%, #efe0c8 100%);
+        radial-gradient(circle at 10% 12%, rgba(6, 182, 212, .32), transparent 26%),
+        radial-gradient(circle at 88% 10%, rgba(124, 58, 237, .24), transparent 28%),
+        radial-gradient(circle at 75% 88%, rgba(245, 158, 11, .27), transparent 30%),
+        radial-gradient(circle at 18% 82%, rgba(16, 185, 129, .23), transparent 28%),
+        linear-gradient(135deg, #ecfeff 0%, #f8fafc 36%, #fff7ed 68%, #fdf2f8 100%);
       overflow-x: hidden;
     }
 
@@ -38,16 +44,28 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.55;
+      opacity: .72;
       background-image:
-        linear-gradient(rgba(125, 86, 31, 0.055) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(125, 86, 31, 0.04) 1px, transparent 1px);
-      background-size: 44px 44px;
-      mask-image: radial-gradient(circle at center, black, transparent 82%);
+        repeating-linear-gradient(45deg, rgba(15,118,110,.075) 0 1px, transparent 1px 34px),
+        repeating-linear-gradient(-45deg, rgba(124,58,237,.06) 0 1px, transparent 1px 34px),
+        radial-gradient(circle at center, rgba(245,158,11,.08) 0 2px, transparent 2px 34px);
+      mask-image: radial-gradient(circle at center, black 0%, transparent 86%);
+    }
+
+    body::after {
+      content: "✦ ✧ ✦ ✧ ✦";
+      position: fixed;
+      inset-inline-start: 20px;
+      top: 22px;
+      writing-mode: vertical-rl;
+      color: rgba(37, 99, 235, .18);
+      font-size: 28px;
+      letter-spacing: 18px;
+      pointer-events: none;
     }
 
     .page {
-      width: min(1180px, calc(100% - 32px));
+      width: min(1200px, calc(100% - 30px));
       margin: 0 auto;
       padding: 34px 0 56px;
       position: relative;
@@ -55,70 +73,100 @@
     }
 
     .hero {
-      min-height: 54vh;
+      min-height: 58vh;
       display: grid;
       place-items: center;
-      padding: 38px 18px;
+      padding: 34px 12px;
       text-align: center;
     }
 
     .hero-card {
-      width: min(900px, 100%);
-      padding: clamp(28px, 5vw, 70px);
-      border: 1px solid rgba(125, 86, 31, 0.20);
-      border-radius: calc(var(--radius) + 12px);
-      background: linear-gradient(145deg, rgba(255,255,255,0.55), var(--paper));
+      width: min(960px, 100%);
+      padding: clamp(30px, 5vw, 76px);
+      border: 1px solid rgba(255, 255, 255, .7);
+      border-radius: 44px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.78), rgba(255,255,255,.45)),
+        conic-gradient(from 120deg, rgba(6,182,212,.18), rgba(124,58,237,.15), rgba(245,158,11,.18), rgba(16,185,129,.16), rgba(6,182,212,.18));
       box-shadow: var(--shadow);
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(18px);
       position: relative;
       overflow: hidden;
+      isolation: isolate;
     }
 
-    .hero-card::before,
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 32px;
+      border: 2px solid transparent;
+      background:
+        linear-gradient(white, white) padding-box,
+        linear-gradient(135deg, var(--cyan), var(--violet), var(--amber), var(--emerald)) border-box;
+      opacity: .55;
+      z-index: -1;
+    }
+
     .hero-card::after {
       content: "";
       position: absolute;
-      width: 270px;
-      height: 270px;
-      border-radius: 50%;
-      background: rgba(183, 137, 60, 0.12);
-      filter: blur(4px);
-      pointer-events: none;
+      inset: -45%;
+      background:
+        radial-gradient(circle, rgba(37,99,235,.11) 0 2px, transparent 2px 24px),
+        linear-gradient(45deg, transparent 48%, rgba(15,118,110,.09) 49% 51%, transparent 52%);
+      transform: rotate(12deg);
+      z-index: -2;
     }
 
-    .hero-card::before { top: -120px; right: -110px; }
-    .hero-card::after { bottom: -140px; left: -110px; }
-
-    .hero-content { position: relative; z-index: 1; }
+    .ornament {
+      width: min(520px, 88%);
+      height: 18px;
+      margin: 0 auto 22px;
+      background:
+        radial-gradient(circle at center, var(--amber) 0 7px, transparent 8px),
+        linear-gradient(90deg, transparent, var(--teal), var(--blue), var(--violet), var(--rose), transparent);
+      border-radius: 999px;
+      opacity: .9;
+    }
 
     .basmala {
+      display: inline-grid;
+      place-items: center;
+      padding: 10px 24px;
+      border-radius: 999px;
+      color: white;
+      background: linear-gradient(135deg, var(--teal), var(--blue), var(--violet));
+      box-shadow: 0 14px 28px rgba(37,99,235,.24);
       font-size: clamp(1.05rem, 2vw, 1.45rem);
-      color: var(--gold-dark);
       margin-bottom: 24px;
-      letter-spacing: 0.02em;
+      letter-spacing: .02em;
     }
 
     .org {
       display: grid;
       gap: 8px;
-      color: var(--muted);
-      font-size: clamp(0.95rem, 1.7vw, 1.18rem);
+      color: #344054;
+      font-size: clamp(.98rem, 1.7vw, 1.2rem);
       margin-bottom: 30px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(2rem, 6vw, 4.7rem);
+      font-size: clamp(2rem, 6vw, 4.6rem);
       line-height: 1.25;
-      color: var(--ink);
+      color: #111827;
       text-wrap: balance;
+      text-shadow: 0 2px 0 rgba(255,255,255,.6);
     }
 
     .hero-line {
-      width: min(340px, 70%);
-      height: 2px;
-      margin: 30px auto 0;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      width: min(420px, 80%);
+      height: 5px;
+      margin: 32px auto 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cyan), var(--emerald), var(--amber), var(--rose), var(--violet));
+      box-shadow: 0 12px 28px rgba(124,58,237,.18);
     }
 
     .toolbar {
@@ -129,21 +177,21 @@
       grid-template-columns: 1fr auto;
       gap: 12px;
       align-items: center;
-      margin: 6px 0 28px;
+      margin: 6px 0 24px;
       padding: 12px;
-      border: 1px solid rgba(125, 86, 31, 0.18);
-      border-radius: 22px;
-      background: rgba(255, 250, 240, 0.78);
-      box-shadow: 0 12px 34px rgba(63, 45, 24, 0.12);
-      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .72);
+      box-shadow: 0 18px 44px rgba(16,24,40,.13);
+      backdrop-filter: blur(20px);
     }
 
     .searchbox {
       width: 100%;
-      border: 1px solid rgba(125, 86, 31, 0.24);
+      border: 1px solid rgba(37,99,235,.22);
       outline: none;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.65);
+      border-radius: 18px;
+      background: rgba(255,255,255,.8);
       color: var(--ink);
       padding: 14px 18px;
       font: inherit;
@@ -151,99 +199,110 @@
     }
 
     .searchbox:focus {
-      border-color: rgba(183, 137, 60, 0.80);
-      box-shadow: 0 0 0 4px rgba(183, 137, 60, 0.12);
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 5px rgba(6,182,212,.14);
     }
 
-    .actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
 
     button, .chip {
-      border: 1px solid rgba(125, 86, 31, 0.22);
-      background: rgba(255, 255, 255, 0.62);
-      color: var(--gold-dark);
+      border: 0;
+      background: linear-gradient(135deg, rgba(15,118,110,.95), rgba(37,99,235,.95));
+      color: white;
       border-radius: 999px;
       padding: 11px 16px;
       font: inherit;
       cursor: pointer;
-      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+      transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
       white-space: nowrap;
+      box-shadow: 0 12px 24px rgba(37,99,235,.18);
     }
 
-    button:hover, .chip:hover,
-    .chip.active {
-      transform: translateY(-2px);
-      background: rgba(183, 137, 60, 0.14);
-      box-shadow: 0 10px 22px rgba(63, 45, 24, 0.10);
+    button:nth-child(2) { background: linear-gradient(135deg, var(--rose), var(--violet)); }
+
+    button:hover, .chip:hover, .chip.active {
+      transform: translateY(-2px) scale(1.02);
+      filter: saturate(1.12);
+      box-shadow: 0 18px 34px rgba(124,58,237,.22);
     }
 
-    .chips {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 28px;
-    }
+    .chips { display: flex; gap: 9px; flex-wrap: wrap; margin-bottom: 28px; }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 16px;
-    }
+    .chip { background: rgba(255,255,255,.72); color: #0f172a; border: 1px solid rgba(37,99,235,.16); box-shadow: 0 10px 24px rgba(16,24,40,.08); }
+    .chip.active { color: white; background: linear-gradient(135deg, var(--cyan), var(--blue), var(--violet)); }
+
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
 
     .month-card {
+      --accent: var(--teal);
+      --accent2: var(--cyan);
       grid-column: span 4;
-      border: 1px solid rgba(125, 86, 31, 0.18);
+      border: 1px solid rgba(255,255,255,.72);
       border-radius: var(--radius);
-      background: linear-gradient(145deg, rgba(255,255,255,0.70), rgba(255, 249, 238, 0.88));
-      box-shadow: 0 16px 40px rgba(63, 45, 24, 0.10);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.90), rgba(255,255,255,.66)),
+        radial-gradient(circle at 14% 14%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 38%);
+      box-shadow: 0 20px 48px rgba(16,24,40,.12);
       overflow: hidden;
-      transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+      transition: transform .24s ease, box-shadow .24s ease;
+      position: relative;
     }
 
-    .month-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 24px 56px rgba(63, 45, 24, 0.15);
-      border-color: rgba(183, 137, 60, 0.45);
+    .month-card::before {
+      content: "";
+      position: absolute;
+      inset-inline-start: 0;
+      top: 0;
+      width: 7px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
     }
+
+    .month-card::after {
+      content: "✦";
+      position: absolute;
+      top: 12px;
+      inset-inline-end: 18px;
+      color: color-mix(in srgb, var(--accent) 36%, transparent);
+      font-size: 46px;
+      line-height: 1;
+    }
+
+    .month-card:hover { transform: translateY(-7px); box-shadow: 0 28px 70px rgba(16,24,40,.18); }
+
+    .month-card:nth-child(6n+1) { --accent: #0f766e; --accent2: #06b6d4; }
+    .month-card:nth-child(6n+2) { --accent: #2563eb; --accent2: #7c3aed; }
+    .month-card:nth-child(6n+3) { --accent: #e11d48; --accent2: #f59e0b; }
+    .month-card:nth-child(6n+4) { --accent: #10b981; --accent2: #84cc16; }
+    .month-card:nth-child(6n+5) { --accent: #9333ea; --accent2: #ec4899; }
+    .month-card:nth-child(6n+6) { --accent: #ea580c; --accent2: #facc15; }
 
     .month-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 14px;
-      padding: 20px 22px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(183, 137, 60, 0.08);
+      padding: 21px 23px;
+      border-bottom: 1px solid rgba(15,23,42,.08);
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--accent) 16%, transparent), color-mix(in srgb, var(--accent2) 12%, transparent));
     }
 
-    .month-title {
-      margin: 0;
-      font-size: 1.35rem;
-      color: var(--gold-dark);
-    }
+    .month-title { margin: 0; font-size: 1.35rem; color: color-mix(in srgb, var(--accent) 72%, #111827); }
 
     .count {
-      min-width: 38px;
-      height: 38px;
+      min-width: 40px;
+      height: 40px;
       display: grid;
       place-items: center;
-      border-radius: 50%;
-      background: rgba(125, 86, 31, 0.10);
-      color: var(--gold-dark);
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
       font-weight: 700;
+      box-shadow: 0 12px 24px color-mix(in srgb, var(--accent) 22%, transparent);
     }
 
-    .events {
-      list-style: none;
-      padding: 18px 22px 22px;
-      margin: 0;
-      display: grid;
-      gap: 11px;
-    }
+    .events { list-style: none; padding: 18px 23px 23px; margin: 0; display: grid; gap: 11px; }
 
     .events li {
       display: grid;
@@ -251,7 +310,7 @@
       gap: 10px;
       align-items: start;
       padding: 10px 0;
-      border-bottom: 1px dashed rgba(125, 86, 31, 0.16);
+      border-bottom: 1px dashed rgba(15,23,42,.12);
       line-height: 1.65;
       font-size: 1.08rem;
     }
@@ -259,43 +318,37 @@
     .events li:last-child { border-bottom: 0; }
 
     .num {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       display: grid;
       place-items: center;
-      border-radius: 10px;
-      background: rgba(183, 137, 60, 0.12);
-      color: var(--gold-dark);
-      font-size: 0.93rem;
+      border-radius: 11px;
+      background: color-mix(in srgb, var(--accent) 14%, white);
+      color: color-mix(in srgb, var(--accent) 76%, #111827);
+      font-size: .93rem;
       margin-top: 2px;
+      font-weight: 700;
     }
 
-    mark {
-      background: rgba(183, 137, 60, 0.25);
-      color: inherit;
-      border-radius: 6px;
-      padding: 0 3px;
-    }
+    mark { background: rgba(250, 204, 21, .48); color: inherit; border-radius: 7px; padding: 0 4px; }
 
     .empty {
       display: none;
       text-align: center;
       padding: 34px;
       border-radius: var(--radius);
-      background: rgba(255, 250, 240, 0.76);
-      border: 1px solid rgba(125, 86, 31, 0.18);
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(255,255,255,.72);
       color: var(--muted);
       font-size: 1.2rem;
+      box-shadow: 0 20px 48px rgba(16,24,40,.10);
     }
 
     .empty.show { display: block; }
 
-    @media (max-width: 980px) {
-      .month-card { grid-column: span 6; }
-    }
-
+    @media (max-width: 980px) { .month-card { grid-column: span 6; } }
     @media (max-width: 680px) {
-      .page { width: min(100% - 18px, 1180px); padding-top: 12px; }
+      .page { width: min(100% - 18px, 1200px); padding-top: 12px; }
       .hero { min-height: auto; padding: 20px 0 18px; }
       .toolbar { grid-template-columns: 1fr; top: 8px; }
       .actions { justify-content: stretch; }
@@ -303,11 +356,12 @@
       .month-card { grid-column: span 12; }
       .chips { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 8px; }
       .chip { flex: 0 0 auto; }
+      body::after { display: none; }
     }
 
     @media print {
       body { background: white; }
-      body::before, .toolbar, .chips { display: none; }
+      body::before, body::after, .toolbar, .chips { display: none; }
       .page { width: 100%; padding: 0; }
       .hero { min-height: auto; padding: 0 0 20px; }
       .hero-card, .month-card { box-shadow: none; background: white; border-color: #ddd; }
@@ -319,6 +373,7 @@
   <main class="page">
     <section class="hero" aria-label="مقدمة الصفحة">
       <div class="hero-card">
+        <div class="ornament"></div>
         <div class="hero-content">
           <div class="basmala">بسم الله الرحمن الرحيم</div>
           <div class="org">
@@ -347,112 +402,18 @@
 
   <script>
     const months = [
-      {
-        title: "شهر محرم",
-        events: [
-          "الهجرة النبوية الشريفة",
-          "غزوة خيبر",
-          "عاشوراء ذكرى انتصار سيدنا موسى على فرعون",
-          "القادسية",
-          "فتح مصر"
-        ]
-      },
-      {
-        title: "شهر صفر",
-        events: [
-          "بعث الرجيع",
-          "سرية بئر معونة",
-          "بعث أسامة بن زيد"
-        ]
-      },
-      {
-        title: "شهر ربيع الأول",
-        events: [
-          "المولد النبوي الشريف",
-          "زواج النبي صلى الله عليه وسلم بالسيدة خديجة رضي الله عنها.",
-          "تجديد بناء الكعبة، والدور الذي قام به الأمين محمد صلى الله عليه وسلم.",
-          "وصول الرسول صلى الله عليه وسلم إلى المدينة يوم الاثنين آتياً من قباء.",
-          "غزوة بني النضير.",
-          "وفاة السيد إبراهيم بن رسول الله صلى الله عليه وسلم",
-          "وفاة الرسول صلى الله عليه وسلم.",
-          "فتح القدس."
-        ]
-      },
-      {
-        title: "شهر ربيع الآخر",
-        events: ["وقعة حطين."]
-      },
-      {
-        title: "جمادى الأولى",
-        events: [
-          "عقد الزواج بين علي وفاطمة رضي الله عنهما.",
-          "سرية مؤتة."
-        ]
-      },
-      {
-        title: "جمادى الآخرة",
-        events: [
-          "سرية ذات السلاسل",
-          "وقعة اليرموك",
-          "فتح القسطنطينية."
-        ]
-      },
-      {
-        title: "شهر رجب",
-        events: [
-          "الهجرة الأولى إلى الحبشة",
-          "الإسراء والمعراج",
-          "غزوة تبوك",
-          "فتح دمشق",
-          "تحرير القدس من الصليبيين."
-        ]
-      },
-      {
-        title: "شهر شعبان",
-        events: [
-          "تحويل القبلة",
-          "غزوة بني المصطلق",
-          "عبور طارق بن زياد",
-          "وقعة بلاط الشهداء.",
-          "إقامة أول جمعة بعد تحرير القدس من الصليبيين."
-        ]
-      },
-      {
-        title: "شهر رمضان",
-        events: [
-          "بدء الوحي على الرسول صلى الله عليه وسلم.",
-          "نزول القرآن الكريم",
-          "غزوة بدر الكبرى.",
-          "فتح مكة.",
-          "فتح الأندلس.",
-          "فتح عمورية",
-          "وقعة عين جالوت."
-        ]
-      },
-      {
-        title: "شهر شوال",
-        events: [
-          "غزوة بني قينقاع",
-          "غزوة أحد",
-          "غزوة الخندق",
-          "غزوة حنين",
-          "زواج النبي صلى الله عليه وسلم بعائشة رضي الله عنها."
-        ]
-      },
-      {
-        title: "شهر ذي القعدة",
-        events: [
-          "غزوة بني قريظة.",
-          "أسر الحديبية."
-        ]
-      },
-      {
-        title: "شهر ذي الحجة",
-        events: [
-          "حجة أبي بكر الصديق رضي الله عنه بالمسلمين.",
-          "حجة الوداع."
-        ]
-      }
+      { title: "شهر محرم", events: ["الهجرة النبوية الشريفة", "غزوة خيبر", "عاشوراء ذكرى انتصار سيدنا موسى على فرعون", "القادسية", "فتح مصر"] },
+      { title: "شهر صفر", events: ["بعث الرجيع", "سرية بئر معونة", "بعث أسامة بن زيد"] },
+      { title: "شهر ربيع الأول", events: ["المولد النبوي الشريف", "زواج النبي صلى الله عليه وسلم بالسيدة خديجة رضي الله عنها.", "تجديد بناء الكعبة، والدور الذي قام به الأمين محمد صلى الله عليه وسلم.", "وصول الرسول صلى الله عليه وسلم إلى المدينة يوم الاثنين آتياً من قباء.", "غزوة بني النضير.", "وفاة السيد إبراهيم بن رسول الله صلى الله عليه وسلم", "وفاة الرسول صلى الله عليه وسلم.", "فتح القدس."] },
+      { title: "شهر ربيع الآخر", events: ["وقعة حطين."] },
+      { title: "جمادى الأولى", events: ["عقد الزواج بين علي وفاطمة رضي الله عنهما.", "سرية مؤتة."] },
+      { title: "جمادى الآخرة", events: ["سرية ذات السلاسل", "وقعة اليرموك", "فتح القسطنطينية."] },
+      { title: "شهر رجب", events: ["الهجرة الأولى إلى الحبشة", "الإسراء والمعراج", "غزوة تبوك", "فتح دمشق", "تحرير القدس من الصليبيين."] },
+      { title: "شهر شعبان", events: ["تحويل القبلة", "غزوة بني المصطلق", "عبور طارق بن زياد", "وقعة بلاط الشهداء.", "إقامة أول جمعة بعد تحرير القدس من الصليبيين."] },
+      { title: "شهر رمضان", events: ["بدء الوحي على الرسول صلى الله عليه وسلم.", "نزول القرآن الكريم", "غزوة بدر الكبرى.", "فتح مكة.", "فتح الأندلس.", "فتح عمورية", "وقعة عين جالوت."] },
+      { title: "شهر شوال", events: ["غزوة بني قينقاع", "غزوة أحد", "غزوة الخندق", "غزوة حنين", "زواج النبي صلى الله عليه وسلم بعائشة رضي الله عنها."] },
+      { title: "شهر ذي القعدة", events: ["غزوة بني قريظة.", "أسر الحديبية."] },
+      { title: "شهر ذي الحجة", events: ["حجة أبي بكر الصديق رضي الله عنه بالمسلمين.", "حجة الوداع."] }
     ];
 
     const cards = document.getElementById("cards");
@@ -462,10 +423,7 @@
     const empty = document.getElementById("empty");
     let activeMonth = "الكل";
 
-    function escapeRegExp(text) {
-      return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    }
-
+    function escapeRegExp(text) { return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
     function highlight(text, query) {
       if (!query) return text;
       const regex = new RegExp(escapeRegExp(query), "gi");
@@ -474,9 +432,7 @@
 
     function renderChips() {
       const names = ["الكل", ...months.map(month => month.title)];
-      chips.innerHTML = names.map(name => `
-        <button type="button" class="chip ${name === activeMonth ? "active" : ""}" data-month="${name}">${name}</button>
-      `).join("");
+      chips.innerHTML = names.map(name => `<button type="button" class="chip ${name === activeMonth ? "active" : ""}" data-month="${name}">${name}</button>`).join("");
     }
 
     function renderCards() {
@@ -485,10 +441,7 @@
         .filter(month => activeMonth === "الكل" || month.title === activeMonth)
         .map(month => ({
           ...month,
-          events: month.events.filter(event => {
-            const haystack = `${month.title} ${event}`;
-            return !query || haystack.includes(query);
-          })
+          events: month.events.filter(event => !query || `${month.title} ${event}`.includes(query))
         }))
         .filter(month => month.events.length > 0 || (!query && activeMonth === month.title));
 
@@ -499,9 +452,7 @@
             <span class="count">${month.events.length}</span>
           </header>
           <ol class="events">
-            ${month.events.map((event, index) => `
-              <li><span class="num">${index + 1}</span><span>${highlight(event, query)}</span></li>
-            `).join("")}
+            ${month.events.map((event, index) => `<li><span class="num">${index + 1}</span><span>${highlight(event, query)}</span></li>`).join("")}
           </ol>
         </article>
       `).join("");
