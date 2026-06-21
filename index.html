@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>فهرس بأهم الحوادث المشهورة</title>
+  <style>
+    :root {
+      --bg: #f6efe3;
+      --paper: rgba(255, 252, 245, 0.92);
+      --ink: #1f1a15;
+      --muted: #756a5e;
+      --gold: #b7893c;
+      --gold-dark: #7d561f;
+      --line: rgba(125, 86, 31, 0.22);
+      --shadow: 0 24px 70px rgba(63, 45, 24, 0.18);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: "Amiri", "Scheherazade New", "Noto Naskh Arabic", "Traditional Arabic", Tahoma, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(183, 137, 60, 0.22), transparent 28%),
+        radial-gradient(circle at 82% 6%, rgba(125, 86, 31, 0.18), transparent 30%),
+        linear-gradient(135deg, #fbf5ea 0%, var(--bg) 46%, #efe0c8 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.55;
+      background-image:
+        linear-gradient(rgba(125, 86, 31, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(125, 86, 31, 0.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black, transparent 82%);
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 56px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      min-height: 54vh;
+      display: grid;
+      place-items: center;
+      padding: 38px 18px;
+      text-align: center;
+    }
+
+    .hero-card {
+      width: min(900px, 100%);
+      padding: clamp(28px, 5vw, 70px);
+      border: 1px solid rgba(125, 86, 31, 0.20);
+      border-radius: calc(var(--radius) + 12px);
+      background: linear-gradient(145deg, rgba(255,255,255,0.55), var(--paper));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before,
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 270px;
+      height: 270px;
+      border-radius: 50%;
+      background: rgba(183, 137, 60, 0.12);
+      filter: blur(4px);
+      pointer-events: none;
+    }
+
+    .hero-card::before { top: -120px; right: -110px; }
+    .hero-card::after { bottom: -140px; left: -110px; }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .basmala {
+      font-size: clamp(1.05rem, 2vw, 1.45rem);
+      color: var(--gold-dark);
+      margin-bottom: 24px;
+      letter-spacing: 0.02em;
+    }
+
+    .org {
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: clamp(0.95rem, 1.7vw, 1.18rem);
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 6vw, 4.7rem);
+      line-height: 1.25;
+      color: var(--ink);
+      text-wrap: balance;
+    }
+
+    .hero-line {
+      width: min(340px, 70%);
+      height: 2px;
+      margin: 30px auto 0;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 12px;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      margin: 6px 0 28px;
+      padding: 12px;
+      border: 1px solid rgba(125, 86, 31, 0.18);
+      border-radius: 22px;
+      background: rgba(255, 250, 240, 0.78);
+      box-shadow: 0 12px 34px rgba(63, 45, 24, 0.12);
+      backdrop-filter: blur(18px);
+    }
+
+    .searchbox {
+      width: 100%;
+      border: 1px solid rgba(125, 86, 31, 0.24);
+      outline: none;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.65);
+      color: var(--ink);
+      padding: 14px 18px;
+      font: inherit;
+      font-size: 1.05rem;
+    }
+
+    .searchbox:focus {
+      border-color: rgba(183, 137, 60, 0.80);
+      box-shadow: 0 0 0 4px rgba(183, 137, 60, 0.12);
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    button, .chip {
+      border: 1px solid rgba(125, 86, 31, 0.22);
+      background: rgba(255, 255, 255, 0.62);
+      color: var(--gold-dark);
+      border-radius: 999px;
+      padding: 11px 16px;
+      font: inherit;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+      white-space: nowrap;
+    }
+
+    button:hover, .chip:hover,
+    .chip.active {
+      transform: translateY(-2px);
+      background: rgba(183, 137, 60, 0.14);
+      box-shadow: 0 10px 22px rgba(63, 45, 24, 0.10);
+    }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .month-card {
+      grid-column: span 4;
+      border: 1px solid rgba(125, 86, 31, 0.18);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(255,255,255,0.70), rgba(255, 249, 238, 0.88));
+      box-shadow: 0 16px 40px rgba(63, 45, 24, 0.10);
+      overflow: hidden;
+      transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+    }
+
+    .month-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 56px rgba(63, 45, 24, 0.15);
+      border-color: rgba(183, 137, 60, 0.45);
+    }
+
+    .month-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(183, 137, 60, 0.08);
+    }
+
+    .month-title {
+      margin: 0;
+      font-size: 1.35rem;
+      color: var(--gold-dark);
+    }
+
+    .count {
+      min-width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(125, 86, 31, 0.10);
+      color: var(--gold-dark);
+      font-weight: 700;
+    }
+
+    .events {
+      list-style: none;
+      padding: 18px 22px 22px;
+      margin: 0;
+      display: grid;
+      gap: 11px;
+    }
+
+    .events li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(125, 86, 31, 0.16);
+      line-height: 1.65;
+      font-size: 1.08rem;
+    }
+
+    .events li:last-child { border-bottom: 0; }
+
+    .num {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: rgba(183, 137, 60, 0.12);
+      color: var(--gold-dark);
+      font-size: 0.93rem;
+      margin-top: 2px;
+    }
+
+    mark {
+      background: rgba(183, 137, 60, 0.25);
+      color: inherit;
+      border-radius: 6px;
+      padding: 0 3px;
+    }
+
+    .empty {
+      display: none;
+      text-align: center;
+      padding: 34px;
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, 0.76);
+      border: 1px solid rgba(125, 86, 31, 0.18);
+      color: var(--muted);
+      font-size: 1.2rem;
+    }
+
+    .empty.show { display: block; }
+
+    @media (max-width: 980px) {
+      .month-card { grid-column: span 6; }
+    }
+
+    @media (max-width: 680px) {
+      .page { width: min(100% - 18px, 1180px); padding-top: 12px; }
+      .hero { min-height: auto; padding: 20px 0 18px; }
+      .toolbar { grid-template-columns: 1fr; top: 8px; }
+      .actions { justify-content: stretch; }
+      .actions button { flex: 1; }
+      .month-card { grid-column: span 12; }
+      .chips { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 8px; }
+      .chip { flex: 0 0 auto; }
+    }
+
+    @media print {
+      body { background: white; }
+      body::before, .toolbar, .chips { display: none; }
+      .page { width: 100%; padding: 0; }
+      .hero { min-height: auto; padding: 0 0 20px; }
+      .hero-card, .month-card { box-shadow: none; background: white; border-color: #ddd; }
+      .month-card { break-inside: avoid; grid-column: span 6; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-label="مقدمة الصفحة">
+      <div class="hero-card">
+        <div class="hero-content">
+          <div class="basmala">بسم الله الرحمن الرحيم</div>
+          <div class="org">
+            <span>المديرية العامة للأوقاف الإسلامية</span>
+            <span>في الجمهورية اللبنانية</span>
+            <span>دائرة أوقاف البقاع</span>
+          </div>
+          <h1>فهرس بأهم الحوادث المشهورة في السيرة النبوية والفتوحات الإسلامية</h1>
+          <div class="hero-line"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="toolbar" aria-label="أدوات الصفحة">
+      <input id="searchInput" class="searchbox" type="search" placeholder="ابحث داخل الفهرس" autocomplete="off" />
+      <div class="actions">
+        <button id="clearBtn" type="button">مسح البحث</button>
+        <button type="button" onclick="window.print()">طباعة</button>
+      </div>
+    </section>
+
+    <nav id="chips" class="chips" aria-label="الأشهر"></nav>
+    <section id="cards" class="grid" aria-live="polite"></section>
+    <div id="empty" class="empty">لا توجد نتائج مطابقة</div>
+  </main>
+
+  <script>
+    const months = [
+      {
+        title: "شهر محرم",
+        events: [
+          "الهجرة النبوية الشريفة",
+          "غزوة خيبر",
+          "عاشوراء ذكرى انتصار سيدنا موسى على فرعون",
+          "القادسية",
+          "فتح مصر"
+        ]
+      },
+      {
+        title: "شهر صفر",
+        events: [
+          "بعث الرجيع",
+          "سرية بئر معونة",
+          "بعث أسامة بن زيد"
+        ]
+      },
+      {
+        title: "شهر ربيع الأول",
+        events: [
+          "المولد النبوي الشريف",
+          "زواج النبي صلى الله عليه وسلم بالسيدة خديجة رضي الله عنها.",
+          "تجديد بناء الكعبة، والدور الذي قام به الأمين محمد صلى الله عليه وسلم.",
+          "وصول الرسول صلى الله عليه وسلم إلى المدينة يوم الاثنين آتياً من قباء.",
+          "غزوة بني النضير.",
+          "وفاة السيد إبراهيم بن رسول الله صلى الله عليه وسلم",
+          "وفاة الرسول صلى الله عليه وسلم.",
+          "فتح القدس."
+        ]
+      },
+      {
+        title: "شهر ربيع الآخر",
+        events: ["وقعة حطين."]
+      },
+      {
+        title: "جمادى الأولى",
+        events: [
+          "عقد الزواج بين علي وفاطمة رضي الله عنهما.",
+          "سرية مؤتة."
+        ]
+      },
+      {
+        title: "جمادى الآخرة",
+        events: [
+          "سرية ذات السلاسل",
+          "وقعة اليرموك",
+          "فتح القسطنطينية."
+        ]
+      },
+      {
+        title: "شهر رجب",
+        events: [
+          "الهجرة الأولى إلى الحبشة",
+          "الإسراء والمعراج",
+          "غزوة تبوك",
+          "فتح دمشق",
+          "تحرير القدس من الصليبيين."
+        ]
+      },
+      {
+        title: "شهر شعبان",
+        events: [
+          "تحويل القبلة",
+          "غزوة بني المصطلق",
+          "عبور طارق بن زياد",
+          "وقعة بلاط الشهداء.",
+          "إقامة أول جمعة بعد تحرير القدس من الصليبيين."
+        ]
+      },
+      {
+        title: "شهر رمضان",
+        events: [
+          "بدء الوحي على الرسول صلى الله عليه وسلم.",
+          "نزول القرآن الكريم",
+          "غزوة بدر الكبرى.",
+          "فتح مكة.",
+          "فتح الأندلس.",
+          "فتح عمورية",
+          "وقعة عين جالوت."
+        ]
+      },
+      {
+        title: "شهر شوال",
+        events: [
+          "غزوة بني قينقاع",
+          "غزوة أحد",
+          "غزوة الخندق",
+          "غزوة حنين",
+          "زواج النبي صلى الله عليه وسلم بعائشة رضي الله عنها."
+        ]
+      },
+      {
+        title: "شهر ذي القعدة",
+        events: [
+          "غزوة بني قريظة.",
+          "أسر الحديبية."
+        ]
+      },
+      {
+        title: "شهر ذي الحجة",
+        events: [
+          "حجة أبي بكر الصديق رضي الله عنه بالمسلمين.",
+          "حجة الوداع."
+        ]
+      }
+    ];
+
+    const cards = document.getElementById("cards");
+    const chips = document.getElementById("chips");
+    const searchInput = document.getElementById("searchInput");
+    const clearBtn = document.getElementById("clearBtn");
+    const empty = document.getElementById("empty");
+    let activeMonth = "الكل";
+
+    function escapeRegExp(text) {
+      return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function highlight(text, query) {
+      if (!query) return text;
+      const regex = new RegExp(escapeRegExp(query), "gi");
+      return text.replace(regex, match => `<mark>${match}</mark>`);
+    }
+
+    function renderChips() {
+      const names = ["الكل", ...months.map(month => month.title)];
+      chips.innerHTML = names.map(name => `
+        <button type="button" class="chip ${name === activeMonth ? "active" : ""}" data-month="${name}">${name}</button>
+      `).join("");
+    }
+
+    function renderCards() {
+      const query = searchInput.value.trim();
+      const filtered = months
+        .filter(month => activeMonth === "الكل" || month.title === activeMonth)
+        .map(month => ({
+          ...month,
+          events: month.events.filter(event => {
+            const haystack = `${month.title} ${event}`;
+            return !query || haystack.includes(query);
+          })
+        }))
+        .filter(month => month.events.length > 0 || (!query && activeMonth === month.title));
+
+      cards.innerHTML = filtered.map(month => `
+        <article class="month-card" id="${month.title.replaceAll(" ", "-")}">
+          <header class="month-head">
+            <h2 class="month-title">${highlight(month.title, query)}</h2>
+            <span class="count">${month.events.length}</span>
+          </header>
+          <ol class="events">
+            ${month.events.map((event, index) => `
+              <li><span class="num">${index + 1}</span><span>${highlight(event, query)}</span></li>
+            `).join("")}
+          </ol>
+        </article>
+      `).join("");
+
+      empty.classList.toggle("show", filtered.length === 0);
+      renderChips();
+    }
+
+    chips.addEventListener("click", event => {
+      const button = event.target.closest("button[data-month]");
+      if (!button) return;
+      activeMonth = button.dataset.month;
+      renderCards();
+    });
+
+    searchInput.addEventListener("input", renderCards);
+    clearBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      activeMonth = "الكل";
+      renderCards();
+      searchInput.focus();
+    });
+
+    renderChips();
+    renderCards();
+  </script>
+</body>
+</html>
